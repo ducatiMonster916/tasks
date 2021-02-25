@@ -1,0 +1,16 @@
+{
+    "Cutadapt.read1": "path/to/file",
+    "Cutadapt.read2": "path/to/file",
+    "Cutadapt.read1output": "cut_r1.fq.gz",
+    "Cutadapt.adapter": ["-a", "CTGTCTCTTATACACA"],
+    "Cutadapt.front": ["-g", "GATGTGTATAAGAGACAG"],
+    "Cutadapt.adapterRead2": ["-A", "CTGTCTCTTATACACA"],
+    "Cutadapt.frontRead2": ["-G", "GATGTGTATAAGAGACAG"],
+    "Cutadapt.anywhereRead": [""],    
+    "Cutadapt.anywhereRead2": [""],
+    "Cutadapt.reportPath": "cutadapt_report.txt",
+    "Cutadapt.compressionLevel": "1",  
+    "Cutadapt.qualityCutoff": "10",
+    "Cutadapt.minimumLength": "40" 
+}
+
