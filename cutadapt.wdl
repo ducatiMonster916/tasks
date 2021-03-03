@@ -235,7 +235,6 @@ task Cutadapt {
         noZeroCap: {description: "Equivalent to cutadapt's --no-zero-cap flag.", category: "advanced"}
         cores: {description: "The number of cores to use.", category: "advanced"}
         memory: {description: "The amount of memory this job will use.", category: "advanced"}
-        timeMinutes: {description: "The maximum amount of time the job will run in minutes.", category: "advanced"}
         dockerImage: {description: "The docker image used for this task. Changing this may result in errors which the developers may choose not to address.", category: "advanced"}
 
         # outputs
@@ -254,25 +253,29 @@ task Cutadapt {
     }
 }
 workflow Cutadapt {
-    Array[File] read1_array
-    Array[File]? read2_array
 
-    String read1output 
-    String? read2output
+    input {
+        Array[File] read1_array
+        Array[File]? read2_array
 
-    Array[String] adapter
-    Array[String] front
-    Array[String] adapterRead2
-    Array[String] frontRead2
-    Array[String] anywhereRead    
-    Array[String]anywhereRead2
-    String reportPath
-    Int compressionLevel  
-    Int qualityCutoff
-    Int minimumLength 
+        String read1output 
+        String? read2output
 
-    Int array_pos = 0
+        Array[String] adapter
+        Array[String] front
+        Array[String] adapterRead2
+        Array[String] frontRead2
+        Array[String] anywhereRead    
+        Array[String]anywhereRead2
+        String reportPath
+        Int compressionLevel  
+        Int qualityCutoff
+        Int minimumLength 
 
+        Int array_pos = 0
+
+    }
+    
     scatter (read in read1_array){
         call Cutadapt{
             input: 
@@ -287,7 +290,7 @@ workflow Cutadapt {
                 anywhereRead=anywhereRead,
                 anywhereRead2=anywhereRead2,
                 reportPath=reportPath,
-                compressionLevel,
+                compressionLevel=compressionLevel,
                 qualityCutoff=qualityCutoff,
                 minimumLength=minimumLength
         }
