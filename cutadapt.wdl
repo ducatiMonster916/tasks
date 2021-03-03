@@ -275,20 +275,21 @@ workflow {
 
     scatter (read in read1_array){
         call Cutadapt{
-            input: read1=read,
-            read2=read2_array[array_pos],
-            read1output=read1output,
-            read2output=read2output,
-            adapter=adapter,
-            front=front,
-            adapterRead2=adapterRead2,
-            frontRead2=frontRead2,
-            anywhereRead=anywhereRead,
-            anywhereRead2=anywhereRead2,
-            reportPath=reportPath,
-            compressionLevel,
-            qualityCutoff=qualityCutoff,
-            minimumLength=minimumLength
+            input: 
+                read1=read,
+                read2=read2_array[array_pos],
+                read1output=read1output,
+                read2output=read2output,
+                adapter=adapter,
+                front=front,
+                adapterRead2=adapterRead2,
+                frontRead2=frontRead2,
+                anywhereRead=anywhereRead,
+                anywhereRead2=anywhereRead2,
+                reportPath=reportPath,
+                compressionLevel,
+                qualityCutoff=qualityCutoff,
+                minimumLength=minimumLength
         }
     }
     output {
