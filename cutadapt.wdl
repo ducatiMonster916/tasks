@@ -253,7 +253,7 @@ task Cutadapt {
         wildcardFile: {description: "The wildcard file."}
     }
 }
-workflow {
+workflow Cutadapt {
     Array[File] read1_array
     Array[File]? read2_array
 
