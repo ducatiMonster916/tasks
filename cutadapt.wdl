@@ -156,7 +156,7 @@ task Cutadapt {
         }
     
 
-    output{
+    output {
         File cutRead1 = read1output
         File report = reportPath
         File? cutRead2 = read2output
@@ -290,5 +290,19 @@ workflow {
             qualityCutoff=qualityCutoff,
             minimumLength=minimumLength
         }
+    }
+    output {
+        File cutRead1 = read1output
+        File report = reportPath
+        File? cutRead2 = read2output
+        File? tooLongOutput=tooLongOutputPath
+        File? tooShortOutput=tooShortOutputPath
+        File? untrimmedOutput=untrimmedOutputPath
+        File? tooLongPairedOutput=tooLongPairedOutputPath
+        File? tooShortPairedOutput=tooShortPairedOutputPath
+        File? untrimmedPairedOutput=untrimmedPairedOutputPath
+        File? infoFile=infoFilePath
+        File? restFile=restFilePath
+        File? wildcardFile=wildcardFilePath
     }
 }
