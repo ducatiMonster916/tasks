@@ -86,7 +86,11 @@ task Cutadapt {
         String memory = "~{300 + 100 * cores}M"
         String dockerImage = "quay.io/biocontainers/cutadapt:2.10--py37hf01694f_1"
         Int disk_size = (size(read1, "GB")+ size(read2, "GB")) * 2
+
+        Int array_pos
     }
+
+    
 
     String realRead2output = select_first([read2output, "cut_r2.fq.gz"])
     String read2outputArg = if (defined(read2))
@@ -150,8 +154,8 @@ task Cutadapt {
         ~{true="--bwa" false="" bwa} \
         ~{true="--zero-cap" false="" zeroCap} \
         ~{true="--no-zero-cap" false="" noZeroCap} \
-        reads \
-        ~{read2}[count] \
+        read1 \
+        read2 \
         ~{"> " + reportPath}
         }
     
@@ -292,8 +296,10 @@ workflow Cutadapt {
                 reportPath=reportPath,
                 compressionLevel=compressionLevel,
                 qualityCutoff=qualityCutoff,
-                minimumLength=minimumLength
+                minimumLength=minimumLength,
+                array_pos=array_pos
         }
+        array_pos = array_pos + 1
     }
     output {
         File cutRead1 = read1output
