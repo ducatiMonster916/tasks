@@ -60,7 +60,7 @@ task Cutadapt {
         String? stripSuffix
         String? prefix
         String? suffix
-        Int? minimumLength = 2 # Necessary to prevent creation of empty reads or 1 base reads.
+        Int? minimumLength = 2 
         Int? maximumLength
         Int? maxN
         Boolean? discardTrimmed
